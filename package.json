@@ -1,0 +1,16 @@
+{
+  "name": "live-quiz",
+  "version": "1.0.0",
+  "description": "Quiz truc tiep / Live Quiz - kiem tra kien thuc san pham",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.3"
+  }
+}
