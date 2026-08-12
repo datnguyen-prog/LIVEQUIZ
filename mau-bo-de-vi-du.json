@@ -1,0 +1,52 @@
+{
+  "title": "Ví dụ - Kiến thức sản phẩm TV",
+  "speedBonus": true,
+  "allowLateJoin": false,
+  "questions": [
+    {
+      "text": "TV Coocaa sử dụng hệ điều hành nào?",
+      "options": ["Google TV", "Tizen OS", "webOS", "VIDAA"],
+      "correct": 0,
+      "time": 20,
+      "points": 1000
+    },
+    {
+      "text": "QLED là viết tắt của cụm từ nào?",
+      "options": ["Quick LED", "Quantum Dot LED", "Quality LED", "Quad LED"],
+      "correct": 1,
+      "time": 20,
+      "points": 1000
+    },
+    {
+      "text": "Cổng HDMI phiên bản nào hỗ trợ 4K@120Hz?",
+      "options": ["HDMI 1.4", "HDMI 2.0", "HDMI 2.1", "HDMI 1.2"],
+      "correct": 2,
+      "time": 25,
+      "points": 1500
+    },
+    {
+      "text": "Tần số quét 120Hz mang lại lợi ích rõ nhất khi nào?",
+      "options": [
+        "Xem tin tức",
+        "Nghe nhạc",
+        "Xem phim tài liệu",
+        "Xem thể thao và chơi game"
+      ],
+      "correct": 3,
+      "time": 20,
+      "points": 1000
+    },
+    {
+      "text": "Công nghệ HDR có tác dụng chính là gì?",
+      "options": [
+        "Tăng dải tương phản và màu sắc",
+        "Tăng độ phân giải lên 8K",
+        "Giảm điện năng tiêu thụ",
+        "Tăng công suất loa"
+      ],
+      "correct": 0,
+      "time": 20,
+      "points": 1000
+    }
+  ]
+}

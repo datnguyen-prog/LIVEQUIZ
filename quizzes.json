@@ -1,0 +1,665 @@
+[
+  {
+    "title": "Kiểm tra kiến thức Skyworth/Coocaa - Tổng hợp 25 câu",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "Tập đoàn Skyworth được thành lập vào năm nào?",
+        "options": [
+          "Năm 2000",
+          "Năm 1988",
+          "Năm 1980",
+          "Năm 1990"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Skyworth là doanh nghiệp đầu tiên tại Trung Quốc trong ngành sản xuất TV có năng lực nào sau đây?",
+        "options": [
+          "Chỉ lắp ráp linh kiện",
+          "Tự sản xuất - OBM",
+          "Nhập khẩu nguyên chiếc",
+          "Sản xuất màn hình LCD"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Thương hiệu nào của tập đoàn được định vị là Thương hiệu phong cách sống trẻ trung?",
+        "options": [
+          "Thương hiệu Skyworth",
+          "Thương hiệu Sinotec",
+          "Thương hiệu Coocaa",
+          "Thương hiệu Metz"
+        ],
+        "correct": 2,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Độ mỏng thiết kế của TV khung tranh Coocaa là bao nhiêu?",
+        "options": [
+          "120 mm",
+          "54 mm",
+          "45 mm",
+          "30 mm"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng Art Time 2.0 - Art Gallery trên TV khung tranh Coocaa cho phép người dùng truy cập miễn phí bao nhiêu tác phẩm nghệ thuật?",
+        "options": [
+          "Hơn 50 tác phẩm",
+          "Hơn 100 tác phẩm",
+          "Hơn 200 tác phẩm",
+          "Hơn 300 tác phẩm"
+        ],
+        "correct": 3,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Lớp bảo vệ Stable QD Shield trên công nghệ QLED+ của TV khung tranh sử dụng chất liệu gì để duy trì màu sắc bền bỉ 10 năm không phai màu?",
+        "options": [
+          "Lớp phủ kim loại Nano",
+          "Lớp phủ Silica đặc biệt (giống kính)",
+          "Lớp phủ nhựa Acrylic Polymer",
+          "Lớp phủ Ceramic siêu cứng"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Màn hình chống chói Matte Screen Ultra trên TV khung tranh mang lại góc nhìn ấn tượng lên tới bao nhiêu độ?",
+        "options": [
+          "120 độ",
+          "150 độ",
+          "170 độ",
+          "180 độ"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Độ sáng đỉnh (Peak Brightness) tối đa mà hệ thống đèn nền của TV khung tranh L75 phiên bản 86 inch có thể đạt được là bao nhiêu?",
+        "options": [
+          "100 nits",
+          "200 nits",
+          "350 nits",
+          "50 nits"
+        ],
+        "correct": 2,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng Artist Frame trên dòng TV khung tranh mang lại giá trị thẩm mỹ nào cho người dùng?",
+        "options": [
+          "Tự động thay đổi chất liệu khung viền theo nhiệt độ phòng",
+          "Cung cấp đa dạng tùy chọn khung viền nghệ thuật có thể thay thế, giúp dễ dàng phối hợp theo sở thích và không gian nội thất",
+          "Khung viền tích hợp đèn LED phát sáng đổi màu theo điệu nhạc",
+          "Khung viền bằng gỗ tự nhiên đúc liền không thể tháo rời"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Đặc điểm nổi bật trong thiết kế của dòng TV khung tranh giúp sản phẩm ôm sát tường một cách hoàn hảo như một bức tranh nghệ thuật thực thụ là gì?",
+        "options": [
+          "Sử dụng thiết kế siêu mỏng (Ultra-slim Body) tích hợp tất cả trong một (All-in-one Frame), không cần đầu phát hay dây nối ngoài rườm rà",
+          "Bắt buộc phải khoét âm tường 120mm để giấu tivi",
+          "Phải dùng bộ đầu phát và hộp kết nối rời cồng kềnh phía dưới",
+          "Tivi có phần lưng dày để chứa hệ thống loa cỡ lớn"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Công nghệ mới chống chói Matte Screen Ultra có bao nhiêu lớp ?",
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "correct": 2,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chỉ số chống chói tốt nhất là bao nhiêu?",
+        "options": [
+          "5% - 10%",
+          "10% - 20%",
+          "25%",
+          "40+ %"
+        ],
+        "correct": 2,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "QD Mini LED sử dụng công nghệ QLED thế hệ thứ mấy ?",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chip của QD Mini LED có bao nhiêu tinh thể ?",
+        "options": [
+          "4",
+          "6",
+          "8",
+          "16"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Bộ nhớ của công nghệ âm thanh của QD MiniLED  COOCAA",
+        "options": [
+          "2GB + 32GB",
+          "1GB +16GB",
+          "2GB + 16GB",
+          "1GB + 32GB"
+        ],
+        "correct": 0,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Độ phân giải hiển thị chuẩn của TV Coocaa S3U+ đối với 2 phiên bản kích thước 32 inch và 43 inch là bao nhiêu?",
+        "options": [
+          "32 inch đạt Full HD (1920 x 1080) và 43 inch đạt 4K (3840 x 2160)",
+          "32 inch đạt HD (1366 x 768) và 43 inch đạt FHD (1920 x 1080)",
+          "Cả 2 phiên bản 32 inch và 43 inch đều đạt HD (1366 x 768)",
+          "32 inch đạt SD (720 x 480) và 43 inch đạt HD (1366 x 768)"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "TV Coocaa Y68PRO vận hành trên hệ điều hành thông minh nào?",
+        "options": [
+          "Windows 11",
+          "Google TV",
+          "MS-DOS",
+          "Symbian OS"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Google TV trên Tivi hỗ trợ tính năng Multiple Screen Cast mang lại lợi ích gì?",
+        "options": [
+          "Cho phép chia màn hình Tivi thành 10 ô nhỏ",
+          "Cho phép trình chiếu và chia sẻ màn hình linh hoạt từ các thiết bị di động/điện thoại lên màn hình Tivi",
+          "Tự động in hình ảnh trên Tivi ra giấy",
+          "Tăng độ phân giải của nguồn phát lên gấp 10 lần"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng Daily Channel thuộc hệ sinh thái Daily Family 2.0 trên Coocaa Y68PRO mang lại lợi ích trực tiếp nào cho người dùng?",
+        "options": [
+          "Cung cấp hơn 400 kênh giải trí miễn phí không cần đăng ký",
+          "Bắt buộc người dùng đóng phí thuê bao hàng tháng",
+          "Chỉ cho phép xem tivi trong 5 phút mỗi ngày",
+          "Tự động xóa toàn bộ ứng dụng trên TV"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng độc quyền \"Find-my Remote\" (Tìm điều khiển) trên TV Coocaa Z85 được thiết kế nhằm giải quyết vấn đề thực tế nào của người dùng?",
+        "options": [
+          "Tìm lại điều khiển từ xa bị thất lạc trong nhà bằng âm thanh báo hiệu",
+          "Tự động đặt mua điều khiển mới trên trang thương mại điện tử khi bị mất",
+          "Điều khiển TV từ xa thông qua vệ tinh khi người dùng đi du lịch nước ngoài",
+          "Biến điều khiển thành chiếc điện thoại di động để gọi điện thoại"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng \"Tăng cường độ rõ của hội thoại\" (Dialogue Clarity) trên TV Coocaa Z85 hoạt động như thế nào để hỗ trợ người nghe?",
+        "options": [
+          "Sử dụng AI phân tích nội dung, tách lời thoại ra khỏi âm thanh nền và tạp âm xung quanh",
+          "Tự động tắt hoàn toàn tiếng của phim và bật phụ đề tiếng Anh",
+          "Tăng âm lượng loa lên mức tối đa 100% gây giật mình",
+          "Bắt buộc người dùng phải đeo tai nghe có dây"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Chức năng Điều chỉnh cỡ chữ (Text Scaling) trên Coocaa Z85 giúp người lớn tuổi đọc nội dung dễ dàng hơn. Tỷ lệ phóng đại chữ tối đa có thể cài đặt là bao nhiêu?",
+        "options": [
+          "Tối đa 100%",
+          "Tối đa 130% kết hợp in đậm văn bản",
+          "Tối đa 200% nhưng không hỗ trợ in đậm",
+          "Tối đa 500% che kín toàn bộ màn hình"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Gas được sử dụng trên điều hoà của SKYWORTH là",
+        "options": [
+          "R23",
+          "R32",
+          "R410",
+          "R22"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chế độ bảo hành điều hoà của SKYWORTH là?",
+        "options": [
+          "Bảo hành 3 năm + 10 năm máy nén",
+          "Bảo hành 3 năm cho tất cả bộ điều hoà",
+          "Bảo hành 2 năm + 5 năm máy nén",
+          "Bảo hành 2 năm + 10 năm máy nén"
+        ],
+        "correct": 0,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chế độ ngủ trên điều hoà SKYWORTH dùng để?",
+        "options": [
+          "Điều chỉnh nhiệt độ tự động theo môi trường",
+          "Hẹn giờ tắt mở",
+          "Giúp lạnh sâu và mạnh hơn",
+          "Tất cả đều đúng"
+        ],
+        "correct": 0,
+        "time": 20,
+        "points": 1000
+      }
+    ],
+    "id": "sky00",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  },
+  {
+    "title": "Kiến thức về Tập đoàn Skyworth",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "Tập đoàn Skyworth được thành lập vào năm nào?",
+        "options": [
+          "Năm 2000",
+          "Năm 1988",
+          "Năm 1980",
+          "Năm 1990"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Skyworth là doanh nghiệp đầu tiên tại Trung Quốc trong ngành sản xuất TV có năng lực nào sau đây?",
+        "options": [
+          "Chỉ lắp ráp linh kiện",
+          "Tự sản xuất - OBM",
+          "Nhập khẩu nguyên chiếc",
+          "Sản xuất màn hình LCD"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Thương hiệu nào của tập đoàn được định vị là Thương hiệu phong cách sống trẻ trung?",
+        "options": [
+          "Thương hiệu Skyworth",
+          "Thương hiệu Sinotec",
+          "Thương hiệu Coocaa",
+          "Thương hiệu Metz"
+        ],
+        "correct": 2,
+        "time": 20,
+        "points": 1000
+      }
+    ],
+    "id": "sky01",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  },
+  {
+    "title": "Kiến thức sản phẩm TV Khung Tranh",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "Độ mỏng thiết kế của TV khung tranh Coocaa là bao nhiêu?",
+        "options": [
+          "120 mm",
+          "54 mm",
+          "45 mm",
+          "30 mm"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng Art Time 2.0 - Art Gallery trên TV khung tranh Coocaa cho phép người dùng truy cập miễn phí bao nhiêu tác phẩm nghệ thuật?",
+        "options": [
+          "Hơn 50 tác phẩm",
+          "Hơn 100 tác phẩm",
+          "Hơn 200 tác phẩm",
+          "Hơn 300 tác phẩm"
+        ],
+        "correct": 3,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Lớp bảo vệ Stable QD Shield trên công nghệ QLED+ của TV khung tranh sử dụng chất liệu gì để duy trì màu sắc bền bỉ 10 năm không phai màu?",
+        "options": [
+          "Lớp phủ kim loại Nano",
+          "Lớp phủ Silica đặc biệt (giống kính)",
+          "Lớp phủ nhựa Acrylic Polymer",
+          "Lớp phủ Ceramic siêu cứng"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Màn hình chống chói Matte Screen Ultra trên TV khung tranh mang lại góc nhìn ấn tượng lên tới bao nhiêu độ?",
+        "options": [
+          "120 độ",
+          "150 độ",
+          "170 độ",
+          "180 độ"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Độ sáng đỉnh (Peak Brightness) tối đa mà hệ thống đèn nền của TV khung tranh L75 phiên bản 86 inch có thể đạt được là bao nhiêu?",
+        "options": [
+          "100 nits",
+          "200 nits",
+          "350 nits",
+          "50 nits"
+        ],
+        "correct": 2,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng Artist Frame trên dòng TV khung tranh mang lại giá trị thẩm mỹ nào cho người dùng?",
+        "options": [
+          "Tự động thay đổi chất liệu khung viền theo nhiệt độ phòng",
+          "Cung cấp đa dạng tùy chọn khung viền nghệ thuật có thể thay thế, giúp dễ dàng phối hợp theo sở thích và không gian nội thất",
+          "Khung viền tích hợp đèn LED phát sáng đổi màu theo điệu nhạc",
+          "Khung viền bằng gỗ tự nhiên đúc liền không thể tháo rời"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Đặc điểm nổi bật trong thiết kế của dòng TV khung tranh giúp sản phẩm ôm sát tường một cách hoàn hảo như một bức tranh nghệ thuật thực thụ là gì?",
+        "options": [
+          "Sử dụng thiết kế siêu mỏng (Ultra-slim Body) tích hợp tất cả trong một (All-in-one Frame), không cần đầu phát hay dây nối ngoài rườm rà",
+          "Bắt buộc phải khoét âm tường 120mm để giấu tivi",
+          "Phải dùng bộ đầu phát và hộp kết nối rời cồng kềnh phía dưới",
+          "Tivi có phần lưng dày để chứa hệ thống loa cỡ lớn"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      }
+    ],
+    "id": "sky02",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  },
+  {
+    "title": "Kiến thức sản phẩm QD Mini LED / V75 / S3U+",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "Công nghệ mới chống chói Matte Screen Ultra có bao nhiêu lớp ?",
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "correct": 2,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chỉ số chống chói tốt nhất là bao nhiêu?",
+        "options": [
+          "5% - 10%",
+          "10% - 20%",
+          "25%",
+          "40+ %"
+        ],
+        "correct": 2,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "QD Mini LED sử dụng công nghệ QLED thế hệ thứ mấy ?",
+        "options": [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chip của QD Mini LED có bao nhiêu tinh thể ?",
+        "options": [
+          "4",
+          "6",
+          "8",
+          "16"
+        ],
+        "correct": 3,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Bộ nhớ của công nghệ âm thanh của QD MiniLED  COOCAA",
+        "options": [
+          "2GB + 32GB",
+          "1GB +16GB",
+          "2GB + 16GB",
+          "1GB + 32GB"
+        ],
+        "correct": 0,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Độ phân giải hiển thị chuẩn của TV Coocaa S3U+ đối với 2 phiên bản kích thước 32 inch và 43 inch là bao nhiêu?",
+        "options": [
+          "32 inch đạt Full HD (1920 x 1080) và 43 inch đạt 4K (3840 x 2160)",
+          "32 inch đạt HD (1366 x 768) và 43 inch đạt FHD (1920 x 1080)",
+          "Cả 2 phiên bản 32 inch và 43 inch đều đạt HD (1366 x 768)",
+          "32 inch đạt SD (720 x 480) và 43 inch đạt HD (1366 x 768)"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      }
+    ],
+    "id": "sky03",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  },
+  {
+    "title": "Kiến thức sản phẩm Y68PRO & Google TV",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "TV Coocaa Y68PRO vận hành trên hệ điều hành thông minh nào?",
+        "options": [
+          "Windows 11",
+          "Google TV",
+          "MS-DOS",
+          "Symbian OS"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Google TV trên Tivi hỗ trợ tính năng Multiple Screen Cast mang lại lợi ích gì?",
+        "options": [
+          "Cho phép chia màn hình Tivi thành 10 ô nhỏ",
+          "Cho phép trình chiếu và chia sẻ màn hình linh hoạt từ các thiết bị di động/điện thoại lên màn hình Tivi",
+          "Tự động in hình ảnh trên Tivi ra giấy",
+          "Tăng độ phân giải của nguồn phát lên gấp 10 lần"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng Daily Channel thuộc hệ sinh thái Daily Family 2.0 trên Coocaa Y68PRO mang lại lợi ích trực tiếp nào cho người dùng?",
+        "options": [
+          "Cung cấp hơn 400 kênh giải trí miễn phí không cần đăng ký",
+          "Bắt buộc người dùng đóng phí thuê bao hàng tháng",
+          "Chỉ cho phép xem tivi trong 5 phút mỗi ngày",
+          "Tự động xóa toàn bộ ứng dụng trên TV"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      }
+    ],
+    "id": "sky04",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  },
+  {
+    "title": "Kiến thức sản phẩm Coocaa Z85",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "Tính năng độc quyền \"Find-my Remote\" (Tìm điều khiển) trên TV Coocaa Z85 được thiết kế nhằm giải quyết vấn đề thực tế nào của người dùng?",
+        "options": [
+          "Tìm lại điều khiển từ xa bị thất lạc trong nhà bằng âm thanh báo hiệu",
+          "Tự động đặt mua điều khiển mới trên trang thương mại điện tử khi bị mất",
+          "Điều khiển TV từ xa thông qua vệ tinh khi người dùng đi du lịch nước ngoài",
+          "Biến điều khiển thành chiếc điện thoại di động để gọi điện thoại"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Tính năng \"Tăng cường độ rõ của hội thoại\" (Dialogue Clarity) trên TV Coocaa Z85 hoạt động như thế nào để hỗ trợ người nghe?",
+        "options": [
+          "Sử dụng AI phân tích nội dung, tách lời thoại ra khỏi âm thanh nền và tạp âm xung quanh",
+          "Tự động tắt hoàn toàn tiếng của phim và bật phụ đề tiếng Anh",
+          "Tăng âm lượng loa lên mức tối đa 100% gây giật mình",
+          "Bắt buộc người dùng phải đeo tai nghe có dây"
+        ],
+        "correct": 0,
+        "time": 30,
+        "points": 1000
+      },
+      {
+        "text": "Chức năng Điều chỉnh cỡ chữ (Text Scaling) trên Coocaa Z85 giúp người lớn tuổi đọc nội dung dễ dàng hơn. Tỷ lệ phóng đại chữ tối đa có thể cài đặt là bao nhiêu?",
+        "options": [
+          "Tối đa 100%",
+          "Tối đa 130% kết hợp in đậm văn bản",
+          "Tối đa 200% nhưng không hỗ trợ in đậm",
+          "Tối đa 500% che kín toàn bộ màn hình"
+        ],
+        "correct": 1,
+        "time": 30,
+        "points": 1000
+      }
+    ],
+    "id": "sky05",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  },
+  {
+    "title": "Kiến thức sản phẩm Điều hoà Skyworth",
+    "speedBonus": true,
+    "allowLateJoin": false,
+    "questions": [
+      {
+        "text": "Gas được sử dụng trên điều hoà của SKYWORTH là",
+        "options": [
+          "R23",
+          "R32",
+          "R410",
+          "R22"
+        ],
+        "correct": 1,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chế độ bảo hành điều hoà của SKYWORTH là?",
+        "options": [
+          "Bảo hành 3 năm + 10 năm máy nén",
+          "Bảo hành 3 năm cho tất cả bộ điều hoà",
+          "Bảo hành 2 năm + 5 năm máy nén",
+          "Bảo hành 2 năm + 10 năm máy nén"
+        ],
+        "correct": 0,
+        "time": 20,
+        "points": 1000
+      },
+      {
+        "text": "Chế độ ngủ trên điều hoà SKYWORTH dùng để?",
+        "options": [
+          "Điều chỉnh nhiệt độ tự động theo môi trường",
+          "Hẹn giờ tắt mở",
+          "Giúp lạnh sâu và mạnh hơn",
+          "Tất cả đều đúng"
+        ],
+        "correct": 0,
+        "time": 20,
+        "points": 1000
+      }
+    ],
+    "id": "sky06",
+    "updatedAt": "2026-08-12T00:00:00.000Z"
+  }
+]

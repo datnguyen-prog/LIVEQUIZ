@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz Trực Tiếp | Live Quiz — Host</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><div class="logo">🎯</div><span data-t="appName">Quiz Trực Tiếp</span></div>
+  <div class="row">
+    <button class="btn-ghost btn-sm" onclick="toggleLang()" id="langBtn">EN</button>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ============ TABS ============ -->
+  <div class="tabs" id="tabs">
+    <button class="tab on" data-view="lib" data-t="tabLibrary">Thư viện bộ đề</button>
+    <button class="tab" data-view="edit" data-t="tabEditor">Soạn đề</button>
+    <button class="tab hide" data-view="live" data-t="tabLive">Tổ chức thi</button>
+  </div>
+
+  <!-- ============ LIBRARY ============ -->
+  <section id="v-lib">
+    <div class="row between" style="margin-bottom:12px">
+      <h1 data-t="tabLibrary">Thư viện bộ đề</h1>
+      <div class="row">
+        <label class="btn btn-ghost btn-sm" style="margin:0">
+          <span data-t="importJson">Nhập từ file</span>
+          <input type="file" accept=".json" id="fileIn" style="display:none">
+        </label>
+        <button onclick="newQuiz()"><span>＋</span><span data-t="newQuiz">Tạo bộ đề mới</span></button>
+      </div>
+    </div>
+    <div id="quizList"></div>
+  </section>
+
+  <!-- ============ EDITOR ============ -->
+  <section id="v-edit" class="hide">
+    <div class="card">
+      <div class="field">
+        <label data-t="quizTitle">Tên bộ đề</label>
+        <input id="qzTitle" data-tp="quizTitleP">
+      </div>
+      <div class="row">
+        <div class="field grow" style="min-width:150px">
+          <label data-t="defaultTime">Thời gian mặc định (giây)</label>
+          <input id="defTime" type="number" min="5" max="300" value="20">
+        </div>
+        <div class="field grow" style="min-width:150px">
+          <label data-t="defaultPoints">Điểm mặc định mỗi câu</label>
+          <input id="defPoints" type="number" min="1" max="10000" value="1000">
+        </div>
+      </div>
+      <div class="row" style="gap:20px">
+        <label class="row" style="cursor:pointer;margin:0">
+          <input type="checkbox" id="speedBonus" checked style="width:18px;height:18px">
+          <span><b data-t="speedBonus">Cộng điểm theo tốc độ trả lời</b><br>
+          <span class="small mut" data-t="speedBonusHint"></span></span>
+        </label>
+        <label class="row" style="cursor:pointer;margin:0">
+          <input type="checkbox" id="allowLate" style="width:18px;height:18px">
+          <span data-t="allowLate">Cho phép vào trễ khi đã bắt đầu</span>
+        </label>
+      </div>
+    </div>
+
+    <div id="qEditor"></div>
+
+    <div class="row" style="margin:14px 0 40px">
+      <button onclick="addQuestion()">＋ <span data-t="addQuestion">Thêm câu hỏi</span></button>
+      <button class="btn-ghost" onclick="toggleBulk()">📋 <span data-t="bulkAdd">Nhập nhanh nhiều câu</span></button>
+      <div class="grow"></div>
+      <button class="btn-ghost" onclick="exportQuiz()" data-t="exportJson">Xuất bộ đề</button>
+      <button class="btn-ok" onclick="saveQuiz()">💾 <span data-t="save">Lưu bộ đề</span></button>
+      <button class="btn-sec" onclick="saveQuiz(true)">▶ <span data-t="host">Bắt đầu tổ chức</span></button>
+    </div>
+
+    <div class="card hide" id="bulkBox">
+      <label data-t="bulkHint"></label>
+      <textarea id="bulkText" rows="10" placeholder="Coocaa dùng hệ điều hành nào?&#10;Google TV&#10;Tizen&#10;webOS&#10;VIDAA&#10;A"></textarea>
+      <div style="margin-top:10px"><button onclick="bulkImport()" data-t="bulkGo">Tạo câu hỏi</button></div>
+    </div>
+  </section>
+
+  <!-- ============ LIVE ============ -->
+  <section id="v-live" class="hide">
+
+    <!-- LOBBY -->
+    <div id="s-lobby">
+      <div class="card center">
+        <div class="row" style="justify-content:center;align-items:flex-start;gap:36px">
+          <div>
+            <h2 data-t="scanToJoin">Quét mã QR để tham gia</h2>
+            <div class="qrbox"><img id="qrImg" alt="QR"></div>
+          </div>
+          <div style="text-align:left;min-width:250px">
+            <p class="mut small" data-t="orGo">Hoặc truy cập</p>
+            <p class="big" id="joinUrl" style="word-break:break-all;font-size:22px"></p>
+            <p class="mut small" data-t="enterPin">và nhập mã PIN</p>
+            <div class="pin" id="pinBox">------</div>
+            <div id="ipPick" class="hide" style="margin-top:14px;max-width:280px">
+              <label data-t="pickIp">Địa chỉ mạng dùng cho QR</label>
+              <select id="ipSel" onchange="setJoinHost(this.value)"></select>
+            </div>
+            <p class="mut small" style="margin-top:12px" data-t="lanHint"></p>
+            <p class="small" id="lanWarn" style="color:#fbbf24;max-width:300px"></p>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row between">
+          <h2><span data-t="players">Người tham gia</span> — <span id="pCount">0</span></h2>
+          <button class="btn-ok btn-lg" onclick="hostSend({t:'start'})" id="startBtn" disabled>
+            ▶ <span data-t="startGame">Bắt đầu</span></button>
+        </div>
+        <div class="row" id="pList" style="margin-top:12px"><span class="mut" data-t="waiting"></span></div>
+      </div>
+    </div>
+
+    <!-- QUESTION -->
+    <div id="s-question" class="hide">
+      <div class="card">
+        <div class="row between">
+          <span class="chip"><span data-t="qCount">Câu</span> <b id="qNow">1</b> <span class="mut">/</span> <span id="qTot">1</span></span>
+          <div class="timer" id="timer">20</div>
+          <span class="chip"><b id="ansCount">0</b>/<b id="ansTot">0</b> <span data-t="answered">đã trả lời</span></span>
+        </div>
+        <div class="qtext" id="qText"></div>
+        <div class="bar" style="margin-bottom:16px"><i id="qBar" style="width:100%"></i></div>
+        <div class="opts" id="qOpts"></div>
+        <div class="row" style="margin-top:16px;justify-content:flex-end">
+          <button class="btn-ghost" onclick="hostSend({t:'skip'})">⏭ <span data-t="showAnswer">Chốt đáp án ngay</span></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- REVEAL -->
+    <div id="s-reveal" class="hide">
+      <div class="card">
+        <div class="row between" style="margin-bottom:8px">
+          <span class="chip"><span data-t="qCount">Câu</span> <b id="rNow">1</b> / <span id="rTot">1</span></span>
+          <div class="row">
+            <button class="btn-ghost" onclick="hostSend({t:'end'})" data-t="endGame">Kết thúc</button>
+            <button class="btn-ok btn-lg" onclick="hostSend({t:'next'})" id="nextBtn">
+              <span data-t="nextQ">Câu tiếp theo</span> ▶</button>
+          </div>
+        </div>
+        <div class="qtext" id="rText" style="font-size:22px"></div>
+        <div class="opts" id="rOpts"></div>
+      </div>
+      <div class="card">
+        <h2 id="rLbTitle">🏆 <span data-t="lbNow">Bảng xếp hạng hiện tại</span></h2>
+        <div id="rLb"></div>
+      </div>
+    </div>
+
+    <!-- FINAL -->
+    <div id="s-final" class="hide">
+      <div class="card center">
+        <h1 style="font-size:38px">🏆 <span data-t="finalRank">Bảng xếp hạng chung cuộc</span></h1>
+        <p class="mut" id="fTitle"></p>
+      </div>
+      <div class="card"><div id="fLb"></div></div>
+      <div class="row center" style="justify-content:center;margin-bottom:40px">
+        <button class="btn-ok btn-lg" onclick="downloadExcel()">📊 <span data-t="exportXlsx">Tải file Excel kết quả</span></button>
+        <button class="btn-ghost btn-lg" onclick="location.reload()" data-t="backLobby">Về màn hình chính</button>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<script src="i18n.js"></script>
+<script>
+/* =============== STATE =============== */
+let quiz = null;          // bộ đề đang soạn
+let ws = null, PIN = null, TOTAL = 0;
+let tickTimer = null;
+const L = ['a','b','c','d'], LT = ['A','B','C','D'];
+
+/* =============== NAV =============== */
+document.getElementById('tabs').onclick = e => {
+  const b = e.target.closest('.tab'); if (!b) return; showView(b.dataset.view);
+};
+function showView(v){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.view===v));
+  ['lib','edit','live'].forEach(x=>document.getElementById('v-'+x).classList.toggle('hide',x!==v));
+}
+function showLive(s){
+  ['lobby','question','reveal','final'].forEach(x=>
+    document.getElementById('s-'+x).classList.toggle('hide',x!==s));
+}
+window.onLangChange = () => {
+  document.getElementById('langBtn').textContent = LANG==='vi'?'EN':'VI';
+  renderList(); if(quiz) renderEditor();
+};
+
+/* =============== LIBRARY =============== */
+let quizzes = [];
+async function loadList(){
+  quizzes = await (await fetch('/api/quizzes')).json();
+  renderList();
+}
+function renderList(){
+  const el = document.getElementById('quizList');
+  if(!quizzes.length){ el.innerHTML = `<div class="card center mut">${T('noQuiz')}</div>`; return; }
+  el.innerHTML = quizzes.map(q=>`
+    <div class="card row between">
+      <div>
+        <div style="font-size:18px;font-weight:700">${esc(q.title)}</div>
+        <div class="mut small">${q.questions.length} ${T('questions')} · ${
+          q.questions.reduce((s,x)=>s+(+x.points||0),0)} ${T('points')}</div>
+      </div>
+      <div class="row">
+        <button class="btn-sm btn-ghost" onclick="editQuiz('${q.id}')">${T('edit')}</button>
+        <button class="btn-sm btn-ghost" onclick="cloneQuiz('${q.id}')">${T('copy')}</button>
+        <button class="btn-sm btn-ghost" onclick="delQuiz('${q.id}')">🗑</button>
+        <button class="btn-sm btn-ok" onclick="hostQuiz('${q.id}')">▶ ${T('host')}</button>
+      </div>
+    </div>`).join('');
+}
+function newQuiz(){
+  quiz = { title:'', questions:[], speedBonus:true, allowLateJoin:false };
+  document.getElementById('qzTitle').value='';
+  document.getElementById('speedBonus').checked=true;
+  document.getElementById('allowLate').checked=false;
+  addQuestion(); showView('edit');
+}
+function editQuiz(id){
+  quiz = JSON.parse(JSON.stringify(quizzes.find(q=>q.id===id)));
+  document.getElementById('qzTitle').value = quiz.title;
+  document.getElementById('speedBonus').checked = quiz.speedBonus!==false;
+  document.getElementById('allowLate').checked = !!quiz.allowLateJoin;
+  if(quiz.questions[0]){
+    document.getElementById('defTime').value = quiz.questions[0].time;
+    document.getElementById('defPoints').value = quiz.questions[0].points;
+  }
+  renderEditor(); showView('edit');
+}
+function cloneQuiz(id){
+  const q = JSON.parse(JSON.stringify(quizzes.find(x=>x.id===id)));
+  delete q.id; q.title += ' (copy)'; quiz=q;
+  document.getElementById('qzTitle').value = q.title;
+  renderEditor(); showView('edit');
+}
+async function delQuiz(id){
+  if(!confirm(T('confirmDel'))) return;
+  await fetch('/api/quizzes/'+id,{method:'DELETE'}); loadList();
+}
+
+/* =============== EDITOR =============== */
+function addQuestion(){
+  quiz.questions.push({
+    text:'', options:['','','',''], correct:null,
+    time:+document.getElementById('defTime').value||20,
+    points:+document.getElementById('defPoints').value||1000
+  });
+  renderEditor();
+  setTimeout(()=>{const n=document.querySelectorAll('#qEditor .qcard');
+    n[n.length-1]?.scrollIntoView({behavior:'smooth',block:'center'});},50);
+}
+function renderEditor(){
+  document.getElementById('qEditor').innerHTML = quiz.questions.map((q,i)=>`
+  <div class="qcard">
+    <div class="qhead">
+      <span class="qnum">${T('qCount')} ${i+1}</span>
+      <div class="row">
+        <input type="number" min="5" max="300" value="${q.time}" style="width:78px" class="btn-sm"
+          onchange="quiz.questions[${i}].time=+this.value||20"><span class="mut small">${T('seconds')}</span>
+        <input type="number" min="1" max="10000" value="${q.points}" style="width:92px"
+          onchange="quiz.questions[${i}].points=+this.value||1000"><span class="mut small">${T('points')}</span>
+        <button class="btn-sm btn-ghost" onclick="moveQ(${i},-1)">↑</button>
+        <button class="btn-sm btn-ghost" onclick="moveQ(${i},1)">↓</button>
+        <button class="btn-sm btn-ghost" onclick="dupQ(${i})">⧉</button>
+        <button class="btn-sm btn-ghost" onclick="delQ(${i})">🗑</button>
+      </div>
+    </div>
+    <textarea rows="2" placeholder="${T('questionP')}"
+      oninput="quiz.questions[${i}].text=this.value">${esc(q.text)}</textarea>
+    <div style="height:10px"></div>
+    ${[0,1,2,3].map(j=>`
+      <div class="optrow ${L[j]}">
+        <div class="tag">${LT[j]}</div>
+        <input value="${esc(q.options[j])}" placeholder="${T('optionP')} ${LT[j]}"
+          oninput="quiz.questions[${i}].options[${j}]=this.value">
+        <div class="pickok ${q.correct===j?'on':''}" onclick="setCorrect(${i},${j})">
+          ${q.correct===j?'✓ '+T('correct'):T('markCorrect')}</div>
+      </div>`).join('')}
+  </div>`).join('');
+}
+function setCorrect(i,j){ quiz.questions[i].correct=j; renderEditor(); }
+function delQ(i){ quiz.questions.splice(i,1); renderEditor(); }
+function dupQ(i){ quiz.questions.splice(i+1,0,JSON.parse(JSON.stringify(quiz.questions[i]))); renderEditor(); }
+function moveQ(i,d){ const j=i+d; if(j<0||j>=quiz.questions.length) return;
+  [quiz.questions[i],quiz.questions[j]]=[quiz.questions[j],quiz.questions[i]]; renderEditor(); }
+function toggleBulk(){ document.getElementById('bulkBox').classList.toggle('hide'); }
+function bulkImport(){
+  const blocks = document.getElementById('bulkText').value.trim().split(/\n\s*\n/);
+  let n=0;
+  for(const b of blocks){
+    const ln = b.split('\n').map(s=>s.trim()).filter(Boolean);
+    if(ln.length<6) continue;
+    const c = 'ABCD'.indexOf(ln[5].trim().toUpperCase()[0]);
+    quiz.questions.push({ text:ln[0], options:[ln[1],ln[2],ln[3],ln[4]],
+      correct: c>=0?c:null,
+      time:+document.getElementById('defTime').value||20,
+      points:+document.getElementById('defPoints').value||1000 });
+    n++;
+  }
+  document.getElementById('bulkText').value='';
+  renderEditor(); toast(`+${n}`);
+}
+function validate(){
+  quiz.title = document.getElementById('qzTitle').value.trim() || 'Quiz';
+  quiz.speedBonus = document.getElementById('speedBonus').checked;
+  quiz.allowLateJoin = document.getElementById('allowLate').checked;
+  if(!quiz.questions.length) return T('needQ');
+  for(let i=0;i<quiz.questions.length;i++){
+    const q=quiz.questions[i];
+    if(!q.text.trim()) return T('needText',i+1);
+    if(q.options.some(o=>!String(o).trim())) return T('needOpts',i+1);
+    if(q.correct===null||q.correct===undefined) return T('needCorrect',i+1);
+  }
+  return null;
+}
+async function saveQuiz(thenHost){
+  const err = validate(); if(err) return toast('⚠ '+err,3500);
+  const r = await fetch('/api/quizzes',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(quiz)});
+  const saved = await r.json(); quiz.id = saved.id;
+  await loadList(); toast('✅ '+T('saved'));
+  if(thenHost) hostQuiz(saved.id);
+}
+function exportQuiz(){
+  const b = new Blob([JSON.stringify(quiz,null,2)],{type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(b);
+  a.download = (quiz.title||'quiz')+'.json'; a.click();
+}
+document.getElementById('fileIn').onchange = e => {
+  const f = e.target.files[0]; if(!f) return;
+  const rd = new FileReader();
+  rd.onload = () => { try{
+      const q = JSON.parse(rd.result); delete q.id; quiz=q;
+      document.getElementById('qzTitle').value=q.title||'';
+      renderEditor(); showView('edit'); toast('OK');
+    }catch(x){ toast('⚠ File lỗi'); } };
+  rd.readAsText(f); e.target.value='';
+};
+
+/* =============== LIVE SESSION =============== */
+async function hostQuiz(id){
+  const r = await fetch('/api/rooms',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({quizId:id})});
+  const d = await r.json();
+  if(d.error) return toast('⚠ '+d.error);
+  PIN = d.pin; TOTAL = d.total;
+  document.getElementById('pinBox').textContent = PIN;
+  document.querySelector('[data-view="live"]').classList.remove('hide');
+  showView('live'); showLive('lobby');
+
+  await setupJoinAddress();
+  connectHost();
+}
+
+/* Địa chỉ để người tham gia truy cập.
+   localhost CHỈ chạy được trên chính máy này, nên phải đổi sang IP trong mạng LAN. */
+let JOIN_HOST = location.host;
+async function setupJoinAddress(){
+  const isLocal = /^(localhost|127\.0\.0\.1|\[::1\])$/i.test(location.hostname);
+  const sel = document.getElementById('ipSel');
+  const warn = document.getElementById('lanWarn');
+  warn.textContent = '';
+  if(!isLocal){ setJoinHost(location.host); return; }   // đã mở bằng IP/tên miền -> giữ nguyên
+  let net = {ips:[],port:3000};
+  try { net = await (await fetch('/api/network')).json(); } catch(e){}
+  if(!net.ips.length){
+    setJoinHost(location.host);
+    warn.textContent = T('noLan');
+    return;
+  }
+  sel.innerHTML = net.ips.map(x=>`<option value="${x.address}:${net.port}">${x.address}:${net.port} (${x.name})</option>`).join('');
+  document.getElementById('ipPick').classList.toggle('hide', net.ips.length<2);
+  setJoinHost(net.ips[0].address + ':' + net.port);
+  if(net.ips.length>1) warn.textContent = T('manyIp');
+}
+async function setJoinHost(hostPort){
+  JOIN_HOST = hostPort;
+  document.getElementById('joinUrl').textContent = hostPort + '/play.html';
+  const url = location.protocol + '//' + hostPort + '/play.html?pin=' + PIN;
+  const qr = await (await fetch('/api/qr?text='+encodeURIComponent(url))).json();
+  document.getElementById('qrImg').src = qr.dataUrl;
+}
+function connectHost(){
+  ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);
+  ws.onopen = ()=> ws.send(JSON.stringify({t:'host_join',pin:PIN}));
+  ws.onmessage = e => onHostMsg(JSON.parse(e.data));
+  ws.onclose = ()=> { if(PIN) setTimeout(connectHost,1500); };
+}
+function hostSend(o){ if(ws&&ws.readyState===1) ws.send(JSON.stringify(o)); }
+
+function onHostMsg(m){
+  if(m.t==='lobby'){
+    document.getElementById('pCount').textContent = m.players.length;
+    document.getElementById('ansTot').textContent = m.players.length;
+    document.getElementById('startBtn').disabled = m.players.length===0;
+    document.getElementById('pList').innerHTML = m.players.length
+      ? m.players.map(p=>`<span class="chip">${p.connected?'🟢':'⚪'} ${esc(p.name)}
+          <span class="x" onclick="hostSend({t:'kick',playerId:'${p.id}'})">×</span></span>`).join('')
+      : `<span class="mut">${T('waiting')}</span>`;
+  }
+  if(m.t==='question'){
+    showLive('question');
+    document.getElementById('qNow').textContent=m.index+1;
+    document.getElementById('qTot').textContent=m.total;
+    document.getElementById('qText').textContent=m.text;
+    document.getElementById('ansCount').textContent='0';
+    document.getElementById('qOpts').innerHTML = m.options.map((o,j)=>
+      `<div class="opt ${L[j]}"><span class="k">${LT[j]}</span><span>${esc(o)}</span></div>`).join('');
+    startTick(m.endAt, m.time);
+  }
+  if(m.t==='progress'){ document.getElementById('ansCount').textContent=m.answered;
+    document.getElementById('ansTot').textContent=m.total; }
+  if(m.t==='reveal'){
+    stopTick(); showLive('reveal');
+    document.getElementById('rNow').textContent=m.index+1;
+    document.getElementById('rTot').textContent=TOTAL;
+    document.getElementById('rText').textContent=document.getElementById('qText').textContent;
+    const tot = Math.max(1,m.counts.reduce((a,b)=>a+b,0));
+    document.getElementById('rOpts').innerHTML =
+      [...document.querySelectorAll('#qOpts .opt')].map((el,j)=>
+        `<div class="opt ${L[j]} ${j===m.correct?'win':'dim'}">
+          <span class="k">${LT[j]}</span>
+          <div class="grow"><div>${el.lastElementChild.textContent}</div>
+            <div class="dist"><i style="width:${m.counts[j]/tot*100}%"></i></div></div>
+          <b>${m.counts[j]}</b></div>`).join('');
+    document.getElementById('rLb').innerHTML = lbTable(m.leaderboard);
+    document.getElementById('nextBtn').classList.toggle('hide', m.isLast);
+  }
+  if(m.t==='final'){
+    stopTick(); showLive('final');
+    document.getElementById('fTitle').textContent=m.title;
+    document.getElementById('fLb').innerHTML = lbTable(m.leaderboard,true);
+  }
+  if(m.t==='error') toast('⚠ '+m.msg);
+}
+function lbTable(lb,full){
+  const rows = (full?lb:lb.slice(0,10)).map(p=>`
+    <tr><td><span class="rk rk${p.rank<=3?p.rank:''}">${p.rank<=3?['🥇','🥈','🥉'][p.rank-1]:p.rank}</span></td>
+    <td><b>${esc(p.name)}</b></td><td><b>${p.score.toLocaleString()}</b></td>
+    <td>${p.correct}</td><td class="mut">${(p.totalTime/1000).toFixed(1)}s</td></tr>`).join('');
+  return `<table><thead><tr><th>${T('rank')}</th><th>${T('name')}</th><th>${T('score')}</th>
+    <th>${T('correctN')}</th><th>⏱</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function startTick(endAt,total){
+  stopTick();
+  const el=document.getElementById('timer'), bar=document.getElementById('qBar');
+  const f=()=>{ const left=Math.max(0,endAt-Date.now());
+    el.textContent=Math.ceil(left/1000);
+    el.classList.toggle('low',left<5000);
+    bar.style.width=(left/(total*1000)*100)+'%';
+    if(left<=0) stopTick(); };
+  f(); tickTimer=setInterval(f,100);
+}
+function stopTick(){ if(tickTimer) clearInterval(tickTimer); tickTimer=null; }
+function downloadExcel(){ window.location='/api/export/'+PIN; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+applyI18n(); loadList();
+</script>
+</body>
+</html>
