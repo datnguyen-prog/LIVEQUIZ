@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Tham gia Quiz | Join Quiz</title>
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎮</text></svg>">
+</head>
+<body>
+
+<header class="top">
+  <div class="brand"><div class="logo">🎮</div><span data-t="appName">Quiz Trực Tiếp</span></div>
+  <div class="row">
+    <span class="chip hide" id="meChip"></span>
+    <button class="btn-ghost btn-sm" onclick="toggleLang()" id="langBtn">EN</button>
+  </div>
+</header>
+
+<div class="wrap narrow">
+
+  <!-- JOIN -->
+  <section id="s-join">
+    <div class="card">
+      <h1 class="center" data-t="joinTitle">Tham gia</h1>
+      <div class="field">
+        <label data-t="pinLabel">Mã PIN</label>
+        <input id="inPin" class="pin-in" inputmode="numeric" maxlength="6" placeholder="------">
+      </div>
+      <div class="field">
+        <label data-t="yourName">Tên của bạn</label>
+        <input id="inName" data-tp="yourNameP" maxlength="24" autocomplete="off">
+      </div>
+      <button class="btn-lg btn-block" onclick="join()" id="joinBtn" data-t="join">Vào phòng</button>
+      <p class="center mut small" id="joinMsg" style="margin-top:12px"></p>
+    </div>
+  </section>
+
+  <!-- WAIT -->
+  <section id="s-wait" class="hide">
+    <div class="card center" style="padding:44px 18px">
+      <div style="font-size:60px">⏳</div>
+      <h2 id="waitName"></h2>
+      <p class="mut" data-t="waitHost">Đã vào phòng! Chờ quản trị bắt đầu...</p>
+    </div>
+  </section>
+
+  <!-- QUESTION -->
+  <section id="s-q" class="hide">
+    <div class="card">
+      <div class="row between" style="margin-bottom:10px">
+        <span class="chip"><span data-t="qCount">Câu</span> <b id="qNow">1</b>/<span id="qTot">1</span></span>
+        <div class="timer" id="timer" style="width:60px;height:60px;min-width:60px;font-size:26px;border-width:4px">20</div>
+        <span class="chip">⭐ <b id="myScore">0</b></span>
+      </div>
+      <div class="bar" style="margin-bottom:14px"><i id="qBar" style="width:100%"></i></div>
+      <div class="qtext" id="qText" style="font-size:20px"></div>
+      <div class="opts" id="qOpts"></div>
+      <p class="center mut hide" id="lockMsg" style="margin-top:16px;font-weight:700"></p>
+    </div>
+  </section>
+
+  <!-- RESULT of a question -->
+  <section id="s-res" class="hide">
+    <div class="card center">
+      <div style="font-size:64px" id="resIcon">✅</div>
+      <h1 id="resTitle" style="margin:6px 0"></h1>
+      <p class="mut" id="resCorrect"></p>
+      <div class="row" style="justify-content:center;gap:26px;margin:18px 0 6px">
+        <div><div class="mut small" data-t="gained">Điểm nhận được</div><div class="big" id="resGain">+0</div></div>
+        <div><div class="mut small" data-t="total">Tổng điểm</div><div class="big" id="resTotal">0</div></div>
+        <div><div class="mut small" data-t="yourRank">Hạng của bạn</div><div class="big" id="resRank">-</div></div>
+      </div>
+    </div>
+    <div class="card">
+      <h3 data-t="top5">Top 5</h3>
+      <div id="resLb"></div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section id="s-final" class="hide">
+    <div class="card center">
+      <div style="font-size:60px">🏆</div>
+      <h1 data-t="finished">Đã hoàn thành!</h1>
+      <div class="row" style="justify-content:center;gap:30px;margin-top:12px">
+        <div><div class="mut small" data-t="yourRank"></div><div class="big" id="fRank">-</div></div>
+        <div><div class="mut small" data-t="total"></div><div class="big" id="fScore">0</div></div>
+      </div>
+    </div>
+    <div class="card"><h3 data-t="finalRank"></h3><div id="fLb"></div></div>
+  </section>
+</div>
+
+<script src="i18n.js"></script>
+<script>
+const L=['a','b','c','d'], LT=['A','B','C','D'];
+let ws=null, PIN=null, myId=localStorage.getItem('playerId')||null, myName='', locked=false, tickTimer=null;
+let lastOptions=[];
+
+const p = new URLSearchParams(location.search);
+if(p.get('pin')) document.getElementById('inPin').value = p.get('pin');
+document.getElementById('inName').value = localStorage.getItem('playerName')||'';
+document.getElementById('inPin').oninput = e => e.target.value = e.target.value.replace(/\D/g,'');
+document.getElementById('inName').onkeydown = e => { if(e.key==='Enter') join(); };
+window.onLangChange = ()=> document.getElementById('langBtn').textContent = LANG==='vi'?'EN':'VI';
+
+function show(s){ ['join','wait','q','res','final'].forEach(x=>
+  document.getElementById('s-'+x).classList.toggle('hide',x!==s)); }
+
+function join(){
+  const pin=document.getElementById('inPin').value.trim();
+  const name=document.getElementById('inName').value.trim();
+  if(pin.length!==6) return msg('⚠ '+T('errPin'));
+  if(!name) return msg('⚠ '+T('yourNameP'));
+  PIN=pin; myName=name;
+  // PIN mới thì bỏ id cũ / new PIN -> drop stale id
+  if(localStorage.getItem('playerPin')!==pin) myId=null;
+  localStorage.setItem('playerName',name); localStorage.setItem('playerPin',pin);
+  document.getElementById('joinBtn').disabled=true; msg(T('joining'));
+  connect();
+}
+function msg(s){ document.getElementById('joinMsg').textContent=s; }
+
+function connect(){
+  ws = new WebSocket((location.protocol==='https:'?'wss://':'ws://')+location.host);
+  ws.onopen = ()=> ws.send(JSON.stringify({t:'player_join',pin:PIN,name:myName,playerId:myId}));
+  ws.onmessage = e => onMsg(JSON.parse(e.data));
+  ws.onclose = ()=>{ if(myId){ toast(T('reconnect'),1500); setTimeout(connect,1500);} };
+  ws.onerror = ()=>{};
+}
+function sendAns(i){
+  if(locked) return; locked=true;
+  ws.send(JSON.stringify({t:'answer',choice:i}));
+  document.querySelectorAll('#qOpts .opt').forEach((el,j)=>{
+    el.classList.toggle('dim', j!==i); el.disabled=true; });
+  const lm=document.getElementById('lockMsg'); lm.classList.remove('hide'); lm.textContent=T('picked');
+  if(navigator.vibrate) navigator.vibrate(40);
+}
+
+function onMsg(m){
+  if(m.t==='error'){
+    document.getElementById('joinBtn').disabled=false;
+    msg('⚠ '+m.msg);
+    if(m.code==='dup'||m.code==='no_room'||m.code==='kicked'){ myId=null; localStorage.removeItem('playerId'); show('join'); }
+    return;
+  }
+  if(m.t==='joined'){
+    myId=m.playerId; localStorage.setItem('playerId',myId); myName=m.name;
+    document.getElementById('meChip').classList.remove('hide');
+    document.getElementById('meChip').textContent='👤 '+m.name;
+    document.getElementById('waitName').textContent=T('hi')+', '+m.name+'!';
+    document.getElementById('myScore').textContent=m.score||0;
+    if(m.state==='lobby') show('wait');
+    document.getElementById('joinBtn').disabled=false; msg('');
+  }
+  if(m.t==='question'){
+    locked=false; show('q'); lastOptions=m.options;
+    document.getElementById('qNow').textContent=m.index+1;
+    document.getElementById('qTot').textContent=m.total;
+    document.getElementById('qText').textContent=m.text;
+    document.getElementById('lockMsg').classList.add('hide');
+    document.getElementById('qOpts').innerHTML = m.options.map((o,j)=>
+      `<button class="opt ${L[j]}" onclick="sendAns(${j})"><span class="k">${LT[j]}</span><span>${esc(o)}</span></button>`).join('');
+    startTick(m.endAt,m.time);
+  }
+  if(m.t==='reveal'){
+    stopTick(); show('res');
+    const none = m.yourChoice===null||m.yourChoice===undefined;
+    document.getElementById('resIcon').textContent = m.youCorrect?'🎉':(none?'⌛':'❌');
+    document.getElementById('resTitle').textContent = m.youCorrect?T('youCorrect'):(none?T('noAnswer'):T('youWrong'));
+    document.getElementById('resCorrect').textContent =
+      T('correctIs')+': '+LT[m.correct]+'. '+(lastOptions[m.correct]||'');
+    document.getElementById('resGain').textContent = '+'+m.gained;
+    document.getElementById('resTotal').textContent = m.score.toLocaleString();
+    document.getElementById('resRank').textContent = m.rank+' / '+m.of;
+    document.getElementById('myScore').textContent = m.score;
+    document.getElementById('resLb').innerHTML = lbTable(m.leaderboard);
+    if(navigator.vibrate) navigator.vibrate(m.youCorrect?[40,60,40]:120);
+  }
+  if(m.t==='final'){
+    stopTick(); show('final');
+    const me = m.leaderboard.find(x=>x.id===myId);
+    document.getElementById('fRank').textContent = me? me.rank+' / '+m.leaderboard.length : '-';
+    document.getElementById('fScore').textContent = me? me.score.toLocaleString() : '0';
+    document.getElementById('fLb').innerHTML = lbTable(m.leaderboard,true);
+    localStorage.removeItem('playerId');
+  }
+}
+function lbTable(lb,full){
+  const rows=(full?lb:lb.slice(0,5)).map(p=>`
+    <tr class="${p.id===myId?'me':''}">
+      <td><span class="rk">${p.rank<=3?['🥇','🥈','🥉'][p.rank-1]:p.rank}</span></td>
+      <td><b>${esc(p.name)}</b></td><td><b>${p.score.toLocaleString()}</b></td></tr>`).join('');
+  return `<table><thead><tr><th>${T('rank')}</th><th>${T('name')}</th><th>${T('score')}</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
+function startTick(endAt,total){
+  stopTick();
+  const el=document.getElementById('timer'), bar=document.getElementById('qBar');
+  const f=()=>{ const left=Math.max(0,endAt-Date.now());
+    el.textContent=Math.ceil(left/1000); el.classList.toggle('low',left<5000);
+    bar.style.width=(left/(total*1000)*100)+'%';
+    if(left<=0){ stopTick();
+      if(!locked){ locked=true;
+        document.querySelectorAll('#qOpts .opt').forEach(b=>b.disabled=true);
+        const lm=document.getElementById('lockMsg'); lm.classList.remove('hide'); lm.textContent=T('tooLate'); } } };
+  f(); tickTimer=setInterval(f,100);
+}
+function stopTick(){ if(tickTimer) clearInterval(tickTimer); tickTimer=null; }
+function esc(s){ return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+
+applyI18n();
+if(p.get('pin')) document.getElementById('inName').focus();
+</script>
+</body>
+</html>
